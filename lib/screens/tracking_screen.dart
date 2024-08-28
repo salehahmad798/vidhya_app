@@ -66,12 +66,15 @@
 //     );
 //   }
 // }
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:vidhya_app/main.dart';
 import 'package:vidhya_app/screens/calender.dart';
 import 'package:vidhya_app/screens/fl_chart.dart';
 import 'package:vidhya_app/screens/home_screen.dart';
+import 'package:vidhya_app/screens/tracking_mood_screen.dart';
 import 'package:vidhya_app/utils/app_images.dart';
 import 'package:vidhya_app/widgets/custom_appbar.dart';
 import 'package:vidhya_app/widgets/custom_text.dart';
@@ -98,7 +101,11 @@ class _TrackingScreenState extends State<TrackingScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 22),
             child: Column(
               children: [
-                SimpleCalendar(),
+                GestureDetector(
+                    onTap: () {
+                      Get.to(() => TrackingMoodScreen());
+                    },
+                    child: SimpleCalendar()),
                 Center(
                   child: CText(
                     text: 'Tracking',
@@ -114,7 +121,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
                 ),
                 SizedBox(height: 20),
                 LineChartSample(), // Add the LineChart here
-                SizedBox(height: 70.h),
+                SizedBox(height: 20.h),
                 Container(
                   width: 100.w,
                   height: 100.h,

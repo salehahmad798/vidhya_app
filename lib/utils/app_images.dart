@@ -1,7 +1,7 @@
 class AppImaes {
   static const String profilepick = 'assets/app_images/image 47.png';
   static const String applogo = 'assets/app_images/mail.jpeg';
-
+static const String simle="assets/app_images/Smile.jpeg";
   // static const String app_logo =
   //     'assets/app_images/Selector Logo_Single_PNG (1) 1.png';
   // static const String imagelanguagelevels =

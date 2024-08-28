@@ -1,12 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:vidhya_app/widgets/custom_text.dart';
 
 class LineChartSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300, // Adjust height based on your UI needs
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(13),
       child: LineChart(
         LineChartData(
           gridData: FlGridData(show: false),
@@ -17,17 +18,41 @@ class LineChartSample extends StatelessWidget {
                 getTitlesWidget: (value, meta) {
                   switch (value.toInt()) {
                     case 1:
-                      return Text('Jan');
+                      return CText(
+                        text: 'Jan',
+                        fontSize: 13,
+                        color: Colors.green,
+                      );
                     case 2:
-                      return Text('Feb');
+                      return CText(
+                        text: 'Feb',
+                        fontSize: 13,
+                        color: Colors.green,
+                      );
                     case 3:
-                      return Text('Mar');
+                      return CText(
+                        text: 'Mar',
+                        fontSize: 13,
+                        color: Colors.green,
+                      );
                     case 4:
-                      return Text('Apr');
+                      return CText(
+                        text: 'Apr',
+                        fontSize: 13,
+                        color: Colors.green,
+                      );
                     case 5:
-                      return Text('May');
+                      return CText(
+                        text: 'May',
+                        fontSize: 13,
+                        color: Colors.green,
+                      );
                     case 6:
-                      return Text('Jun');
+                      return CText(
+                        text: 'Jun',
+                        fontSize: 13,
+                        color: Colors.green,
+                      );
                     default:
                       return Text('');
                   }
@@ -45,7 +70,7 @@ class LineChartSample extends StatelessWidget {
           ),
           borderData: FlBorderData(
             show: true,
-            border: Border.all(color: const Color(0xff37434d), width: 1),
+            border: Border.all(color: Colors.green, width: 1),
           ),
           minX: 0,
           maxX: 6,
