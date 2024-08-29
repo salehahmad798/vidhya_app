@@ -28,13 +28,13 @@ class _MoodScreenState extends State<MoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         image: AppImaes.applogo,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 22),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 22),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,7 +46,7 @@ class _MoodScreenState extends State<MoodScreen> {
                     alignText: TextAlign.start,
                     fontWeight: FontWeight.w700,
                     color: Colors.green,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontStyle: FontStyle.italic,
                       decoration: TextDecoration.underline,
                       color: Colors.green,
@@ -60,7 +60,7 @@ class _MoodScreenState extends State<MoodScreen> {
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.green,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontStyle: FontStyle.italic,
                       decoration: TextDecoration.underline,
                       color: Colors.green,
@@ -94,7 +94,7 @@ class _MoodScreenState extends State<MoodScreen> {
                     alignText: TextAlign.center,
                     fontWeight: FontWeight.w700,
                     color: Colors.green,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontStyle: FontStyle.italic,
                       decoration: TextDecoration.underline,
                       color: Colors.green,
@@ -116,7 +116,7 @@ class _MoodScreenState extends State<MoodScreen> {
                         fontWeight: FontWeight.w600,
                         color: Colors.blue.withOpacity(0.5),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.macro_off_rounded,
                         color: Colors.black,
                       ),
@@ -147,7 +147,7 @@ class _MoodScreenState extends State<MoodScreen> {
                     alignText: TextAlign.center,
                     fontWeight: FontWeight.w700,
                     color: Colors.green,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontStyle: FontStyle.italic,
                       decoration: TextDecoration.underline,
                       color: Colors.green,
@@ -185,17 +185,17 @@ class _MoodScreenState extends State<MoodScreen> {
             child: Container(
               height: 55.h,
               width: 55.w,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.green,
               ),
               child: _selections[text]!
-                  ? Icon(
+                  ? const Icon(
                       Icons.check,
                       size: 30.0,
                       color: Colors.white,
                     )
-                  : Icon(
+                  : const Icon(
                       Icons.check_box_outline_blank,
                       size: 30.0,
                       color: Colors.green,
