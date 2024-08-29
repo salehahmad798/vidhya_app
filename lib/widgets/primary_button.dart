@@ -12,6 +12,7 @@ class PrimaryButton extends StatelessWidget {
   double? radius;
   Color? color;
   Color? tcolor;
+  Color boarderColor;
   Function() onTap;
   bool? iconEnable;
 
@@ -22,6 +23,7 @@ class PrimaryButton extends StatelessWidget {
     this.width,
     this.color,
     this.tcolor,
+    this.boarderColor=Colors.green,
     this.radius,
     this.textSize,
     required this.onTap,
@@ -40,7 +42,7 @@ class PrimaryButton extends StatelessWidget {
             color: color ?? AppColors.primarygreenColor.withOpacity(0.5),
             borderRadius: BorderRadius.circular(radius ?? 10.r),
             border: Border.all(
-                width: 8, style: BorderStyle.solid, color: Colors.green)),
+                width: 8, style: BorderStyle.solid, color: boarderColor)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -91,7 +93,6 @@ class PrimaryButton2 extends StatelessWidget {
         height: 64.h,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          // border: Border.all(color: AppColors.primarybackColor),
           color: AppColors.primaryappcolor,
           borderRadius: BorderRadius.circular(12.r),
         ),

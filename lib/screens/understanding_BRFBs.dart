@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vidhya_app/main.dart';
-import 'package:vidhya_app/screens/home_screen.dart';
+import 'package:vidhya_app/screens/home_screen/home_screen.dart';
 import 'package:vidhya_app/utils/app_colors.dart';
 import 'package:vidhya_app/utils/app_images.dart';
 import 'package:vidhya_app/widgets/custom_appbar.dart';
@@ -88,7 +88,7 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
                   text: 'Acceptance?',
                   textSize: 16,
                   tcolor: Colors.white,
-                  width: 170,
+                  width: 170.w,
                   color: Colors.green.withOpacity(0.7),
                   iconEnable: true,
                   onTap: () {

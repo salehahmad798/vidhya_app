@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vidhya_app/main.dart';
-import 'package:vidhya_app/screens/tracking_screen.dart';
+import 'package:vidhya_app/screens/self_tracking/self_tracking_screen_calender.dart';
+import 'package:vidhya_app/screens/behaviour_tracking_screen/tracking_mood_screen.dart';
 import 'package:vidhya_app/screens/understanding_BRFBs.dart';
 import 'package:vidhya_app/utils/app_colors.dart';
 import 'package:vidhya_app/utils/app_images.dart';
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               PrimaryButton(
                   text: 'Self Tracking',
                   onTap: () {
-                    Get.to(() => TrackingScreen());
+                    Get.to(() => TrackingMoodScreen());
                   }),
               SizedBox(
                 height: 20,

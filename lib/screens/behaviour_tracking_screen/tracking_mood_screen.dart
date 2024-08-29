@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:vidhya_app/main.dart';
-import 'package:vidhya_app/screens/calender.dart';
-import 'package:vidhya_app/screens/fl_chart.dart';
-import 'package:vidhya_app/screens/home_screen.dart';
-import 'package:vidhya_app/screens/mood_screen.dart';
-import 'package:vidhya_app/screens/self_tracking.dart';
+import 'package:vidhya_app/screens/mode_tracking/mood_screen.dart';
+import 'package:vidhya_app/screens/mode_tracking/mood_tracking_screen_calender.dart';
+import 'package:vidhya_app/screens/self_tracking/self_tracking.dart';
+import 'package:vidhya_app/screens/self_tracking/self_tracking_screen_calender.dart';
 import 'package:vidhya_app/utils/app_images.dart';
 import 'package:vidhya_app/widgets/custom_appbar.dart';
-import 'package:vidhya_app/widgets/custom_text.dart';
 import 'package:vidhya_app/widgets/primary_button.dart';
+
 // Import the line chart widget
 
 class TrackingMoodScreen extends StatefulWidget {
@@ -24,13 +22,13 @@ class _TrackingMoodScreenState extends State<TrackingMoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         image: AppImaes.applogo,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 22),
+            padding:const EdgeInsets.symmetric(horizontal: 20.0, vertical: 22),
             child: Column(
               children: [
                 SizedBox(height: 20.h),
@@ -38,7 +36,7 @@ class _TrackingMoodScreenState extends State<TrackingMoodScreen> {
                   width: 100.w,
                   height: 100.h,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
+                    image:const DecorationImage(
                       image: AssetImage(AppImaes.applogo),
                     ),
                     shape: BoxShape.circle,
@@ -55,7 +53,7 @@ class _TrackingMoodScreenState extends State<TrackingMoodScreen> {
                 PrimaryButton(
                     text: 'Self Tracking',
                     onTap: () {
-                      Get.to(() => SelfTracking());
+                      Get.to(() =>const SelfTrackingScreenCalender());
                     }),
                 SizedBox(
                   height: 20.h,
@@ -63,7 +61,7 @@ class _TrackingMoodScreenState extends State<TrackingMoodScreen> {
                 PrimaryButton(
                     text: 'Mood',
                     onTap: () {
-                      Get.to(() => MoodScreen());
+                      Get.to(() =>const MoodTrackingScreenCalender());
                     }),
                 SizedBox(
                   height: 20.h,

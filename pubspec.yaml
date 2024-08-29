@@ -19,7 +19,8 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.4.3
+#  sdk: ^3.5.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -41,7 +42,11 @@ dependencies:
   shared_preferences: ^2.3.2
   syncfusion_flutter_calendar: ^26.2.11
   table_calendar: ^3.0.8
+  path_provider: any
+  flutter_sound: any
+  permission_handler: any
   fl_chart: ^0.69.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

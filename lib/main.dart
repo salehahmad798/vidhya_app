@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:vidhya_app/controller/theme_controller.dart';
-import 'package:vidhya_app/screens/slpash_screen.dart';
+import 'package:vidhya_app/screens/splash/slpash_screen.dart';
 
 
-
+final GetStorage storage = GetStorage();
 void main() async{
   await GetStorage.init();
   runApp(MyApp());
