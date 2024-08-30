@@ -7,10 +7,10 @@ class LineChartSample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300, // Adjust height based on your UI needs
-      padding: EdgeInsets.all(13),
+      padding:const EdgeInsets.all(13),
       child: LineChart(
         LineChartData(
-          gridData: FlGridData(show: false),
+          gridData:const FlGridData(show: false),
           titlesData: FlTitlesData(
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(

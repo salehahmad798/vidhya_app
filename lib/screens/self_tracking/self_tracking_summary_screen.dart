@@ -1,30 +1,80 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vidhya_app/screens/self_tracking/self_tracking_model.dart';
 import 'package:vidhya_app/utils/app_colors.dart';
 import 'package:vidhya_app/utils/app_images.dart';
 import 'package:vidhya_app/widgets/custom_appbar.dart';
 import 'package:vidhya_app/widgets/custom_text.dart';
+import 'package:intl/intl.dart';
 
-class SummaryScreen extends StatefulWidget {
-  const SummaryScreen({super.key});
+import '../../main.dart';
+
+class SelfTrackingSummaryScreen extends StatefulWidget {
+  DateTime selectedDay;
+  // SelfTrackingModel tracking;
+   SelfTrackingSummaryScreen({super.key,
+   required this.selectedDay,
+   // required this.tracking
+   });
 
   @override
-  State<SummaryScreen> createState() => _SummaryScreenState();
+  State<SelfTrackingSummaryScreen> createState() => _SelfTrackingSummaryScreenState();
 }
 
-class _SummaryScreenState extends State<SummaryScreen> {
-  final List<String> textList = [
-    'Emotions selected :',
-    'Number of urges :',
-    'Reasons for urges :',
-    'Acted on the urge :',
-  ];
+class _SelfTrackingSummaryScreenState extends State<SelfTrackingSummaryScreen> {
+  // final List<String> textList = [
+  //   'Feeling selected :',
+  //   'Urges Frequency:',
+  // ];
+  late SelfTrackingModel? tracking;
 
   @override
+  void initState() {
+    super.initState();
+    tracking = _getTrackingForDate(widget.selectedDay);
+  }
+
+  SelfTrackingModel? _getTrackingForDate(DateTime date) {
+    List<SelfTrackingModel> allTracking = _getSelfTrackingData();
+    return allTracking.firstWhere(
+          (tracking) => tracking.date.isAtSameMomentAs(date),
+      // orElse: () => null,
+    );
+  }
+  List<SelfTrackingModel> _getSelfTrackingData() {
+    // Fetch the data from storage or your data source
+    final jsonList = storage.read<List<dynamic>>('selfTrack');
+    if (jsonList == null) return [];
+
+    return jsonList.map((json) {
+      return SelfTrackingModel.fromJson(Map<String, dynamic>.from(json));
+    }).toList();
+  }
+  @override
   Widget build(BuildContext context) {
+    if (tracking == null) {
+      return Scaffold(
+        appBar: const CustomAppBar(image: AppImaes.applogo),
+        body: Center(
+          child: CText(
+            text: 'No data found for the selected date.',
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.red,
+          ),
+        ),
+      );
+    }
+
+    List<String> textList = [
+      'Feeling selected: ${tracking!.feeling}',
+      'Urges Frequency: ${tracking!.urgeFrequency}',
+    ];
+
+    ;
     return Scaffold(
       backgroundColor: AppColors.primarywhiteColor,
-      appBar: CustomAppBar(image: AppImaes.applogo),
+      appBar: const CustomAppBar(image: AppImaes.applogo),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 22.0.w, vertical: 22.h),
         child: Column(
@@ -47,7 +97,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                     color: Colors.green,
                   ),
                   CText(
-                    text: '(Selected date)',
+                    text: DateFormat("dd-MM-yyyy").format(tracking!.date),
                     fontSize: 25,
                     fontWeight: FontWeight.w800,
                     color: Colors.green,

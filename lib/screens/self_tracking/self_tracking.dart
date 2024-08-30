@@ -37,7 +37,7 @@ class _SelfTrackingState extends State<SelfTracking> {
   void saveData() {
     // Create a new SelfTrackingModel instance
     SelfTrackingModel data = SelfTrackingModel(
-      urgeFrequency: selectedFeeling!,
+      urgeFrequency: urgeFrequency!,
       feeling: selectedFeeling!,
       date: widget.selectedDate,
     );

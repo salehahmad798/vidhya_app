@@ -73,8 +73,10 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:vidhya_app/main.dart';
 import 'package:vidhya_app/screens/fl_chart.dart';
+import 'package:vidhya_app/screens/mode_tracking/fl_chart_for_mood_tracking.dart';
 import 'package:vidhya_app/screens/mode_tracking/mood_screen.dart';
 import 'package:vidhya_app/screens/mode_tracking/mood_tracking_model.dart';
+import 'package:vidhya_app/screens/mode_tracking/mood_tracking_summary_screen.dart';
 import 'package:vidhya_app/screens/self_tracking/self_tracking.dart';
 import 'package:vidhya_app/screens/self_tracking/self_tracking_model.dart';
 
@@ -127,6 +129,7 @@ class _TrackingScreenState extends State<MoodTrackingScreenCalender> {
   }
   @override
   Widget build(BuildContext context) {
+    final moodList = _getMoodTrackingData();
     return Scaffold(
       appBar: const CustomAppBar(
         image: AppImaes.applogo,
@@ -148,43 +151,94 @@ class _TrackingScreenState extends State<MoodTrackingScreenCalender> {
                   },
                   calendarStyle: const CalendarStyle(
                     defaultTextStyle: TextStyle(color: Colors.black87), // Text color for default dates
-                    weekendTextStyle: TextStyle(color: Colors.black), // Text color for weekend dates, // Text color for dates outside of the current month
+                    weekendTextStyle: TextStyle(color: Colors.black,
+
+                    ), // Text color for weekend dates, // Text color for dates outside of the current month
+                  ),
+                  headerStyle: const HeaderStyle(
+                    titleTextStyle: TextStyle(color: Colors.green, fontSize: 20), // Month/Year text color
+                    leftChevronIcon: Icon(Icons.chevron_left, color: Colors.black), // Left arrow color
+                    rightChevronIcon: Icon(Icons.chevron_right, color: Colors.black), // Right arrow color
+                    formatButtonVisible: false, // Hide format button if not needed
+                    titleCentered: true, // Center the month/year title
                   ),
                   selectedDayPredicate: (day) => isSameDay(day, selectedDate),
                   onDaySelected: (selectedDay, focusedDay) {
                     setState(() {
                       selectedDate = selectedDay;
                     });
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MoodScreen(selectedDate: selectedDate,onUpdate:_refreshCalendar),
-                      ),
-                    );
-                    return;
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => MoodScreen(
+                    //       selectedDate: selectedDate,
+                    //       onUpdate: _refreshCalendar,
+                    //     ),
+                    //   ),
+                    // );
+                    // return;
+                    // Retrieve the saved data from storage
+                    final jsonList = storage.read<List<dynamic>>('MoodList') ?? [];
+
+                    // Convert the list of dynamic objects to a list of SelfTrackingModel instances
+                    final savedData = jsonList.map((json) {
+                      return MoodTrackingModel.fromJson(Map<String, dynamic>.from(json));
+                    }).toList();
+
                     if (isSameDay(selectedDay, DateTime.now())) {
-                      // If the user taps on the current date, navigate to the FeelingsPage
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MoodScreen(selectedDate: selectedDay,onUpdate:_refreshCalendar),
-                        ),
-                      );
+                      // If the user taps on the current date, navigate to the SelfTracking screen
+                      bool dataExists = savedData.any((entry) => isSameDay(entry.date, selectedDay));
+                      if (dataExists) {
+                        // If data exists for the current date, show the summary screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MoodTrackingSummaryScreen(
+                              selectedDay: selectedDay,
+                            ),
+                          ),
+                        );
+                      } else {
+                        // If no data exists, navigate to the SelfTracking screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MoodScreen(
+                              selectedDate: selectedDay,
+                              onUpdate: _refreshCalendar,
+                            ),
+                          ),
+                        );
+                      }
+
                     } else if (selectedDay.isBefore(DateTime.now())) {
-                      // If the user taps on a previous date with a saved mood, navigate to the MoodDetailPage
-                      if (storage.hasData(selectedDay.toString())) {
-                        // Navigator.push(
-                        //   context,
-                          // MaterialPageRoute(
-                          //   builder: (context) => MoodDetailPage(date: selectedDay),
-                          // ),
-                        // );
+                      // Check if there's data for the selected date in the savedData list
+                      bool dataExists = savedData.any((entry) => isSameDay(entry.date, selectedDay));
+
+                      if (dataExists) {
+                        debugPrint("Data found for the selected day: $selectedDay");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MoodTrackingSummaryScreen(
+                              selectedDay: selectedDay,
+                            ),
+                          ),
+                        );
+                      } else {
+                        debugPrint("No data found for the selected day: $selectedDay");
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('No mood data found for the selected date.'),
+                          ),
+                        );
                       }
                     } else {
-                      // If the user taps on a future date or any other condition, handle it here (optional)
-                      // You can show a toast or a dialog that future dates cannot be selected.
+                      // Handle future dates
                       ScaffoldMessenger.of(context).showSnackBar(
-                       const SnackBar(content: Text('You can only add moods for the current date.')),
+                        const SnackBar(
+                          content: Text('You can only add moods for the current date.'),
+                        ),
                       );
                     }
                   },
@@ -224,45 +278,6 @@ class _TrackingScreenState extends State<MoodTrackingScreenCalender> {
                           ),
                         );
                       }
-                      // if (storage.hasData(day.toString())) {
-                      //   // SelfTrackingModel data = storage.read(day.toString());
-                      //   // Read the data from storage
-                      //   final json = storage.read<Map<String, dynamic>>(day.toString());
-                      //   // Convert the map to SelfTrackingModel
-                      //   final selfTrackingModel = SelfTrackingModel.fromJson(json!);
-                      //   final mood = selfTrackingModel.feeling;
-                      //   String emoji = '';
-                      //
-                      //   switch (mood) {
-                      //     case 'Happy':
-                      //       emoji = '😊';
-                      //       break;
-                      //     case 'Sad':
-                      //       emoji = '😢';
-                      //       break;
-                      //     case 'Angry':
-                      //       emoji = '😡';
-                      //       break;
-                      //     case 'Stressed':
-                      //       emoji = '😓';
-                      //       break;
-                      //     case 'Nervous':
-                      //       emoji = '😬';
-                      //       break;
-                      //     case 'Anxious':
-                      //       emoji = '😰';
-                      //       break;
-                      //     default:
-                      //       emoji = '😶';
-                      //   }
-                      //
-                      //   return Center(
-                      //     child: Text(
-                      //       emoji,
-                      //       style:const TextStyle(fontSize: 24), // Increase the size of the emoji
-                      //     ),
-                      //   );
-                      // }
                       return null;
                     },
 
@@ -282,7 +297,7 @@ class _TrackingScreenState extends State<MoodTrackingScreenCalender> {
                   ),
                 ),
                const SizedBox(height: 20),
-                LineChartSample(), // Add the LineChart here
+                FlChartForMoodTracking(trackingData: moodList,), // Add the LineChart here
                 SizedBox(height: 20.h),
                 Container(
                   width: 100.w,
