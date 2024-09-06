@@ -29,11 +29,11 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
             children: [
               Center(
                 child: CText(
-                  text: '''Understanding the BRFBs''',
+                  text: '''Understanding the BFRBs''',
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: Colors.green,
-                  style: TextStyle(
+                  style:const TextStyle(
                       fontStyle: FontStyle.italic,
                       decoration: TextDecoration.underline,
                       color: Colors.green),
@@ -65,9 +65,9 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
                   iconEnable: true,
                   onTap: () {
                     openDialog("Why?",
-                        "Body-Focused Repetitive Behaviors (BFRBs) occur as coping mechanisms for managing stress, anxiety, or boredom, providing temporary relief or satisfaction.They can be influenced by genetic predisposition, neurological factors such as brain chemical imbalances, and environmental triggers. Over time, these behaviors may become ingrained habits, making them di cult to stop.");
+                        "Body-Focused Repetitive Behaviors (BFRBs) occur as coping mechanisms for managing stress, anxiety, or boredom, providing temporary relief or satisfaction.They can be influenced by genetic predisposition, neurological factors such as brain chemical imbalances, and environmental triggers. Over time, these behaviors may become ingrained habits, making them difficult to stop.");
                   }),
-              SizedBox(
+            const  SizedBox(
                 height: 20,
               ),
               PrimaryButton(
@@ -79,9 +79,9 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
                   iconEnable: true,
                   onTap: () {
                     openDialog("Tools?",
-                        "Tools for managing Body-Focused Repetitive Behaviors (BFRBs) include habit-tracking apps to identify patterns and triggers, and fidget toys or awareness devices that o er physical distractions. Journaling can help track occurrences and triggers, while Cognitive Behavioral Therapy (CBT) provides strategies to manage the behaviors. Barrier methods like bandages or gloves can also help prevent the behavior.");
+                        "Tools for managing Body-Focused Repetitive Behaviors (BFRBs) include habit-tracking apps to identify patterns and triggers, and fidget toys or awareness devices that offer physical distractions. Journaling can help track occurrences and triggers, while Cognitive Behavioral Therapy (CBT) provides strategies to manage the behaviors. Barrier methods like bandages or gloves can also help prevent the behavior.");
                   }),
-              SizedBox(
+            const  SizedBox(
                 height: 20,
               ),
               PrimaryButton(
@@ -95,7 +95,7 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
                     openDialog("Acceptance?",
                         "Accepting a Body-Focused Repetitive Behavior (BFRB) involves recognizing it as a part of your experience while focusing on managing it constructively. Start by acknowledging that having a BFRB does not define your worth or capabilities. Educate yourself about the behavior to understand its triggers and impacts better. Seek support from professionals, support groups, or trusted individuals to share experiences and strategies. Practice self-compassion and remind yourself that managing a BFRB is a journey that involves progress, not perfection.");
                   }),
-              SizedBox(
+            const  SizedBox(
                 height: 20,
               ),
               Container(
@@ -103,7 +103,7 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
                 height: 100.h,
                 decoration: BoxDecoration(
                   // color: Colors.greenAccent, // Background color
-                  image: DecorationImage(
+                  image:const DecorationImage(
                     image: AssetImage(AppImaes.applogo),
                   ),
                   shape: BoxShape.circle,
@@ -128,7 +128,7 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
         return AlertDialog(
           backgroundColor: Colors.greenAccent,
           title: Text(title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 decoration: TextDecoration.underline,
                 decorationColor: Colors.white,
@@ -137,7 +137,7 @@ class _UnderstandingBrfbsState extends State<UnderstandingBrfbs> {
               )),
           content: Text(
             description,
-            style: TextStyle(color: Colors.black, fontSize: 16),
+            style: const TextStyle(color: Colors.black, fontSize: 16),
           ),
           actions: [
             Container(

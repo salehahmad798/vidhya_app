@@ -11,10 +11,9 @@ import '../../main.dart';
 
 class SelfTrackingSummaryScreen extends StatefulWidget {
   DateTime selectedDay;
-  // SelfTrackingModel tracking;
+
    SelfTrackingSummaryScreen({super.key,
    required this.selectedDay,
-   // required this.tracking
    });
 
   @override
@@ -22,10 +21,7 @@ class SelfTrackingSummaryScreen extends StatefulWidget {
 }
 
 class _SelfTrackingSummaryScreenState extends State<SelfTrackingSummaryScreen> {
-  // final List<String> textList = [
-  //   'Feeling selected :',
-  //   'Urges Frequency:',
-  // ];
+
   late SelfTrackingModel? tracking;
 
   @override
@@ -68,6 +64,7 @@ class _SelfTrackingSummaryScreenState extends State<SelfTrackingSummaryScreen> {
 
     List<String> textList = [
       'Feeling selected: ${tracking!.feeling}',
+      'Why Experienced Urge: ${tracking!.whyUrges}',
       'Urges Frequency: ${tracking!.urgeFrequency}',
     ];
 
@@ -118,6 +115,8 @@ class _SelfTrackingSummaryScreenState extends State<SelfTrackingSummaryScreen> {
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: Colors.green,
+                        ellipsisText: false,
+                        overflow: TextOverflow.visible,
                       ),
                       SizedBox(height: 40.h),
                     ],

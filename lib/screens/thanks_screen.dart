@@ -17,6 +17,8 @@ class ThanksScreen extends StatefulWidget {
 }
 
 class _ThanksScreenState extends State<ThanksScreen> {
+
+  @override
   void initState() {
     super.initState();
     checkIntro();
@@ -24,7 +26,7 @@ class _ThanksScreenState extends State<ThanksScreen> {
 
   void checkIntro() {
     Timer(const Duration(seconds: 2), () {
-      Get.offAll(() => HomeScreen());
+      Get.offAll(() => const HomeScreen());
     });
   }
 
@@ -48,7 +50,7 @@ class _ThanksScreenState extends State<ThanksScreen> {
               alignText: TextAlign.center,
               fontWeight: FontWeight.w700,
               color: Colors.green,
-              style: TextStyle(
+              style: const TextStyle(
                 fontStyle: FontStyle.italic,
                 decoration: TextDecoration.underline,
                 color: Colors.green,
@@ -63,7 +65,7 @@ class _ThanksScreenState extends State<ThanksScreen> {
             height: 150.h,
             decoration: BoxDecoration(
               // Background color
-              image: DecorationImage(
+              image:const DecorationImage(
                 image: AssetImage(AppImaes.applogo),
               ),
               shape: BoxShape.circle,

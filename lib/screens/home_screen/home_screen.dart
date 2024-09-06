@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vidhya_app/main.dart';
 import 'package:vidhya_app/screens/self_tracking/self_tracking_screen_calender.dart';
 import 'package:vidhya_app/screens/behaviour_tracking_screen/tracking_mood_screen.dart';
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 150.h,
                 decoration: BoxDecoration(
                   color: Colors.greenAccent, // Background color
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: AssetImage(AppImaes.applogo),
                   ),
                   shape: BoxShape.circle,
@@ -51,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: Colors.green,
-                style: TextStyle(
+                style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     decoration: TextDecoration.underline,
                     color: Colors.green),
@@ -62,15 +63,16 @@ class _HomeScreenState extends State<HomeScreen> {
               PrimaryButton(
                   text: 'Self Tracking',
                   onTap: () {
-                    Get.to(() => TrackingMoodScreen());
+                    Get.to(() => const TrackingMoodScreen());
+                    // GetStorage().erase ();
                   }),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               PrimaryButton(
-                  text: 'Understanding BRFBs',
+                  text: 'Understanding BFRBs',
                   onTap: () {
-                    Get.to(() => UnderstandingBrfbs());
+                    Get.to(() => const UnderstandingBrfbs());
                   }),
             ],
           ),
