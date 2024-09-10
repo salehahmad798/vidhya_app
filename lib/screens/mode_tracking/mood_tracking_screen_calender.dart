@@ -66,17 +66,17 @@ class _TrackingScreenState extends State<MoodTrackingScreenCalender> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 22),
             child: Column(
               children: [
-                GestureDetector(
-                    onTap: () {
-                      storage.erase();
-                      setState(() {});
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 60,
-                      color: Colors.redAccent,
-                      child: const  Text("clear"),
-                    )),
+                // GestureDetector(
+                //     onTap: () {
+                //       storage.erase();
+                //       setState(() {});
+                //     },
+                //     child: Container(
+                //       height: 40,
+                //       width: 60,
+                //       color: Colors.redAccent,
+                //       child: const  Text("clear"),
+                //     )),
                 TableCalendar(
                   focusedDay: selectedDate,
                   firstDay: DateTime(2024),
