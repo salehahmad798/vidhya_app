@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 150.h,
                 decoration: BoxDecoration(
                   color: Colors.greenAccent, // Background color
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: AssetImage(AppImaes.applogo),
                   ),
                   shape: BoxShape.circle,
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: Colors.green,
-                style: TextStyle(
+                style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     decoration: TextDecoration.underline,
                     color: Colors.green),
@@ -62,15 +62,15 @@ class _HomeScreenState extends State<HomeScreen> {
               PrimaryButton(
                   text: 'Self Tracking',
                   onTap: () {
-                    Get.to(() => TrackingMoodScreen());
+                    Get.to(() => const TrackingMoodScreen());
                   }),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               PrimaryButton(
                   text: 'Understanding BRFBs',
                   onTap: () {
-                    Get.to(() => UnderstandingBrfbs());
+                    Get.to(() => const UnderstandingBrfbs());
                   }),
             ],
           ),
