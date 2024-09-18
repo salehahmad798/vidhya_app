@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:vidhya_app/main.dart';
-import 'package:vidhya_app/screens/mode_tracking/fl_chart_for_mood_tracking.dart';
 import 'package:vidhya_app/screens/mode_tracking/mood_screen.dart';
 import 'package:vidhya_app/screens/mode_tracking/mood_tracking_model.dart';
 import 'package:vidhya_app/screens/mode_tracking/mood_tracking_summary_screen.dart';
 import 'package:vidhya_app/utils/app_images.dart';
 import 'package:vidhya_app/widgets/custom_appbar.dart';
-import 'package:vidhya_app/widgets/custom_text.dart';
+
 
 class MoodTrackingScreenCalender extends StatefulWidget {
   const MoodTrackingScreenCalender({super.key});
@@ -21,7 +19,8 @@ class MoodTrackingScreenCalender extends StatefulWidget {
 class _TrackingScreenState extends State<MoodTrackingScreenCalender> {
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDate = DateTime.now();
-  // Map<DateTime, String> _moodMap = {};_moodMap
+
+
   Map<DateTime, List<String>> _moodMap = {};
 
   List<MoodTrackingModel> _getMoodTrackingData() {
@@ -206,22 +205,22 @@ class _TrackingScreenState extends State<MoodTrackingScreenCalender> {
                     },
                   ),
                 ),
-                Center(
-                  child: CText(
-                    text: 'Tracking',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.green,
-                    style: const TextStyle(
-                      fontStyle: FontStyle.italic,
-                      decoration: TextDecoration.underline,
-                      color: Colors.green,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                FlChartForMoodTracking(trackingData: moodList),
-                SizedBox(height: 20.h),
+                // Center(
+                //   child: CText(
+                //     text: 'Tracking',
+                //     fontSize: 20,
+                //     fontWeight: FontWeight.w700,
+                //     color: Colors.green,
+                //     style: const TextStyle(
+                //       fontStyle: FontStyle.italic,
+                //       decoration: TextDecoration.underline,
+                //       color: Colors.green,
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(height: 20),
+                // FlChartForMoodTracking(trackingData: moodList),
+                // SizedBox(height: 20.h),
                 Container(
                   width: 100.w,
                   height: 100.h,

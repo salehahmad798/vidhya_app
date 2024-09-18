@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 20.h,
               ),
               CText(
-                text: '''Let's Get Started''',
+                text: "Let's Get Started",
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: Colors.green,
