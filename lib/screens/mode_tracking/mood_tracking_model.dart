@@ -1,7 +1,7 @@
 class MoodTrackingModel {
-  final String feeling;
+  final List<String> feeling;
   final String reason;
-  final String selfCare;
+  final List<String> selfCare;
   final String voiceNotePath;
   final DateTime date;
 
@@ -20,18 +20,18 @@ class MoodTrackingModel {
       'reason': reason,
       'selfCare': selfCare,
       'voiceNotePath': voiceNotePath,
-      'date': date.toIso8601String(), // Convert DateTime to String
+      'date': date.toIso8601String(), // Convert DateTime to String for JSON
     };
   }
 
   // Create an instance from a JSON object
   factory MoodTrackingModel.fromJson(Map<String, dynamic> json) {
     return MoodTrackingModel(
-      feeling: json['feeling'],
+      feeling: List<String>.from(json['feeling']), // Parse list from JSON
       reason: json['reason'],
-      selfCare: json['selfCare'],
+      selfCare: List<String>.from(json['selfCare']), // Parse list from JSON
       voiceNotePath: json['voiceNotePath'],
-      date: DateTime.parse(json['date']), // Convert String back to DateTime
+      date: DateTime.parse(json['date']), // Convert String to DateTime
     );
   }
 }

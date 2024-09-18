@@ -24,7 +24,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primarywhiteColor,
-      appBar: CustomAppBar(image: AppImaes.applogo),
+      appBar: const CustomAppBar(image: AppImaes.applogo),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 22.0.w, vertical: 22.h),
         child: Column(

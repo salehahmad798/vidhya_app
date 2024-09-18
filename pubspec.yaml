@@ -46,6 +46,7 @@ dependencies:
   flutter_sound: any
   permission_handler: any
   fl_chart: ^0.69.0
+  audioplayers: any
 
 dev_dependencies:
   flutter_test:

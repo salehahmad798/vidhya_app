@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vidhya_app/main.dart';
 import 'package:vidhya_app/screens/self_tracking/self_tracking_model.dart';
-import 'package:vidhya_app/screens/urge_screen.dart';
+import 'package:vidhya_app/screens/self_tracking/urge_screen.dart';
 import 'package:vidhya_app/utils/app_images.dart';
 import 'package:vidhya_app/widgets/custom_appbar.dart';
 import 'package:vidhya_app/widgets/custom_text.dart';
@@ -12,7 +12,9 @@ import 'package:vidhya_app/widgets/primary_button.dart';
 class SelfTracking extends StatefulWidget {
   final DateTime selectedDate;
   final VoidCallback onUpdate;
-  const SelfTracking({super.key, required this.selectedDate,
+  const SelfTracking({
+    super.key,
+    required this.selectedDate,
     required this.onUpdate,
   });
 
@@ -29,37 +31,10 @@ class _SelfTrackingState extends State<SelfTracking> {
     'Stressed',
     'Angry',
   ];
-  final List<String> urges = ["0-5", "6-10", "11-15", "16-20+"];
+  final List<String> urgesList = ["0-5", "6-10", "11-15", "16-20","21-25+"];
   String? selectedFeeling;
   // String? customFeeling;
   String? urgeFrequency;
-
-  void saveData() {
-    // Create a new SelfTrackingModel instance
-    SelfTrackingModel data = SelfTrackingModel(
-      urgeFrequency: selectedFeeling!,
-      feeling: selectedFeeling!,
-      date: widget.selectedDate,
-    );
-
-    // Convert the data to JSON format
-    Map<String, dynamic> dataJson = data.toJson();
-
-    // Retrieve the existing list from storage
-    List<dynamic> existingListDynamic = storage.read('selfTrack') ?? [];
-
-    // Cast the dynamic list to a List<Map<String, dynamic>>
-    List<Map<String, dynamic>> existingList =
-    existingListDynamic.cast<Map<String, dynamic>>();
-
-    // Add the new data to the existing list
-    existingList.add(dataJson);
-
-    // Save the updated list back into storage
-    storage.write('selfTrack', existingList);
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,46 +95,39 @@ class _SelfTrackingState extends State<SelfTracking> {
                 ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: urges.length,
+                    itemCount: urgesList.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: 110.w, vertical: 5.h),
                         child: PrimaryButton(
-                            text: urges[index],
+                            text: urgesList[index],
                             width: 100.w,
-                            tcolor: urgeFrequency == urges[index]
+                            tcolor: urgeFrequency == urgesList[index]
                                 ? Colors.white
                                 : Colors.green,
-                            color: urgeFrequency == urges[index]
+                            color: urgeFrequency == urgesList[index]
                                 ? Colors.green
                                 : Colors.white,
-                            boarderColor: urgeFrequency == urges[index]
+                            boarderColor: urgeFrequency == urgesList[index]
                                 ? Colors.green.shade200
                                 : Colors.green,
                             onTap: () {
-                              if (urgeFrequency == null) {
-                                urgeFrequency = urges[index];
-                              } else if (urgeFrequency == urges[index]) {
-                                urgeFrequency = null;
-                              } else {
-                                urgeFrequency = urges[index];
-                              }
-
-                              setState(() {});
+                              // if (urgeFrequency == null) {
+                              //   urgeFrequency = urges[index];
+                              // } else if (urgeFrequency == urges[index]) {
+                              //   urgeFrequency = null;
+                              // } else {
+                              //   urgeFrequency = urges[index];
+                              // }
+                              Get.to(UrgeScreen(
+                                selectedFeeling: selectedFeeling!,
+                                selectedDate: widget.selectedDate,
+                                onUpdate: widget.onUpdate,
+                              ));
+                              // setState(() {});
                             }),
                       );
-                    }),
-                SizedBox(height: 20.h),
-                PrimaryButton(
-                    text: "Save",
-                    // width: 100.w,
-
-                    onTap: () {
-                      saveData();
-                      widget.onUpdate();
-                      Navigator.pop(context);
-
                     }),
                 SizedBox(height: 20.h),
               ],
