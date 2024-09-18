@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -34,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: BoxDecoration(
                   color: Colors.greenAccent, // Background color
                   image: const DecorationImage(
-                  image: const DecorationImage(
                     image: AssetImage(AppImaes.applogo),
                   ),
                   shape: BoxShape.circle,
@@ -54,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.w700,
                 color: Colors.green,
                 style: const TextStyle(
-                style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     decoration: TextDecoration.underline,
                     color: Colors.green),
@@ -66,17 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: 'Self Tracking',
                   onTap: () {
                     Get.to(() => const TrackingMoodScreen());
-                    Get.to(() => const TrackingMoodScreen());
                     // GetStorage().erase ();
                   }),
-              const SizedBox(
               const SizedBox(
                 height: 20,
               ),
               PrimaryButton(
                   text: 'Understanding BFRBs',
                   onTap: () {
-                    Get.to(() => const UnderstandingBrfbs());
                     Get.to(() => const UnderstandingBrfbs());
                   }),
             ],
